@@ -4,6 +4,7 @@
 ###
 [Aa]ssets/AssetStoreTools*
 [Bb]uild/
+[Ll]ogs/
 [Ll]ibrary/
 [Ll]ocal[Cc]ache/
 [Oo]bj/
@@ -40,5 +41,3 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
-
-The Place RPG/Logs
