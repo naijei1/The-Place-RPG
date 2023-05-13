@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class HeartCntrl : MonoBehaviour
 {
+    private static float DefaultSpeed = 0.06f;
+
+    [SerializeField] private float HeartSpeed = DefaultSpeed;
     private Vector3 StartingPos = Vector3.zero;
-    [SerializeField] private float HeartSpeed;
-    [SerializeField] private float Sensitivity;
+    private float Sensitivity = 0.1f;
     private Vector2 MovePos;
 
     [SerializeField] private float MaxX = 2;
@@ -24,18 +26,21 @@ public class HeartCntrl : MonoBehaviour
         MovePos = StartingPos;
     }
 
+    private void Update() {
+        Sensitivity = Mathf.Max(0.01f, Input.GetKey(KeyCode.X) ? HeartSpeed / 2.0f : HeartSpeed);
+    }
+
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal") * Sensitivity;
-        float vertical = Input.GetAxis("Vertical") * Sensitivity;
+        float horizontal = Input.GetAxisRaw("Horizontal") * Sensitivity;
+        float vertical = Input.GetAxisRaw("Vertical") * Sensitivity;
 
         MovePos.x += horizontal;
         MovePos.y += vertical;
 
         MovePos.x = Mathf.Clamp(MovePos.x, MinX, MaxX);
         MovePos.y = Mathf.Clamp(MovePos.y, MinY, MaxY);
-
-        transform.position = Vector2.Lerp(transform.position, MovePos, HeartSpeed * Time.deltaTime);
-
+        
+        transform.position = MovePos;
     }
 }
