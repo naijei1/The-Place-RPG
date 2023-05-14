@@ -15,11 +15,10 @@ public class HeartCntrl : MonoBehaviour
     [SerializeField] private float MaxY = 2;
     [SerializeField] private float MinX = -2;
     [SerializeField] private float MinY = -2;
-    void Start()
+    private void OnEnable()
     {
         SetHeart();
     }
-
     private void SetHeart()
     {
         transform.position = StartingPos;
