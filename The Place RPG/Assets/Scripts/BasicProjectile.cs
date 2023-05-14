@@ -15,7 +15,7 @@ public class BasicProjectile : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime, Space.Self);
-        if (transform.position.x < -barrier || transform.position.x > barrier)
+        if (transform.position.x < -barrier || transform.position.x > barrier)// border for the projectiles
         {
             BattleController.AmountOfProjectile -= 1;
             Destroy(gameObject);

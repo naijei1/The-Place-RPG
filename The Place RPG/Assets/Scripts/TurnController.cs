@@ -40,13 +40,13 @@ public class TurnController : MonoBehaviour
         State = BattleStates.EnemysTurn;
         Invoke("DelayForCheckProjectile", 1);
     }
-    private void DelayForCheckProjectile()
+    private void DelayForCheckProjectile() //This makes sure that there is a delay before checking amount of projectiles in the scene. 
     {
         Delay = true;
     }
     private void Update()
     {
-        if (State == BattleStates.EnemysTurn)
+        if (State == BattleStates.EnemysTurn) //If there is no projectiles left it means enemy turn is over.
         {
             if(BattleController.AmountOfProjectile <= 0 && Delay)
             {

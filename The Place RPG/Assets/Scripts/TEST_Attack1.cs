@@ -21,7 +21,7 @@ public class TEST_Attack1 : MonoBehaviour
         if(AmountToSpawn > 0)
         {
             AmountToSpawn -= 1;
-            Invoke("SummonBullet", 1);
+            Invoke("SummonBullet", 1); //Resummons bullets every second
         }
     }
 }
