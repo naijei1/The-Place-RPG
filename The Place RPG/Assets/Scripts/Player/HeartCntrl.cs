@@ -11,10 +11,10 @@ public class HeartCntrl : MonoBehaviour
     private float Sensitivity = 0.1f;
     private Vector2 MovePos;
 
-    [SerializeField] private float MaxX = 2;
-    [SerializeField] private float MaxY = 2;
-    [SerializeField] private float MinX = -2;
-    [SerializeField] private float MinY = -2;
+    [SerializeField] private float MaxX;
+    [SerializeField] private float MaxY;
+    [SerializeField] private float MinX;
+    [SerializeField] private float MinY;
     private void OnEnable()
     {
         SetHeart();

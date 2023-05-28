@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour {
         for (int i = 0; i < transform.childCount; i++) {
             icons[i] = transform.GetChild(i).gameObject;
         }
+        UpdateColorOfAction();
     }
 
     void Update() {
@@ -29,28 +30,19 @@ public class BattleManager : MonoBehaviour {
         else {
             if (Input.GetKeyDown(KeyCode.X)) {
                 this.SetTurnState(PlayerTurnState.CHOOSING_ACTION);
+                UpdateIconActivetivity();
             }
-        }
-        foreach (GameObject icon in icons) {
-            icon.SetActive(this.IsTurnState(PlayerTurnState.CHOOSING_ACTION));
         }
     }
 
     private void chooseAction() {
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             selectedIcon = Math.Min(3, selectedIcon + 1);
+            UpdateColorOfAction();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             selectedIcon = Math.Max(0, selectedIcon - 1);
-        }
-
-        foreach (GameObject icon in icons) {
-            if (icon == icons[selectedIcon]) {
-                icon.GetComponent<SpriteRenderer>().color = new Color32(255, 200, 0, 255);
-            }
-            else {
-                icon.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-            }
+            UpdateColorOfAction();
         }
         if (Input.GetKeyDown(KeyCode.Z)) {
             switch (selectedIcon) {
@@ -58,6 +50,29 @@ public class BattleManager : MonoBehaviour {
                 case 1: SetTurnState(PlayerTurnState.ACT_MENU); break;
                 case 2: SetTurnState(PlayerTurnState.ITEM_MENU); break;
                 case 3: FinalizeAction("defend"); break;
+            }
+            UpdateIconActivetivity();
+        }
+    }
+    private void UpdateIconActivetivity()
+    {
+        foreach (GameObject icon in icons)
+        {
+            icon.SetActive(this.IsTurnState(PlayerTurnState.CHOOSING_ACTION));
+        }
+    }
+
+    private void UpdateColorOfAction()
+    {
+        foreach (GameObject icon in icons)
+        {
+            if (icon == icons[selectedIcon])
+            {
+                icon.GetComponent<SpriteRenderer>().color = new Color32(255, 200, 0, 255);
+            }
+            else
+            {
+                icon.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
             }
         }
     }
